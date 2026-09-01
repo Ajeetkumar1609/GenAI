@@ -1,0 +1,113 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #1f2937;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.form-container {
+    border-radius: 12px;
+    width: 100%;
+    max-width: 420px;
+    background-color: rgba(255, 255, 255, 0.95);;
+    padding: 32px 28px;
+    box-shadow: 0 15px 40px rgba(15, 23, 42, 0.12);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.form-container h1 {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+form {
+    display: flex;
+    flex-direction: column; 
+    gap: 18px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group Label {
+    font-weight: 600;
+    font-size: 15px;
+    color: #374151;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.2s ease;
+    background: #fff;
+}
+
+.input-group input:focus {
+    border-color: #e1034d;
+    box-shadow: 0 0 0 4px rgba(225, 3, 77, 0.12);
+}
+
+.button {
+    width: 100%;
+    padding: 14px 16px;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    background-color: #e1034d;
+    color: #fff;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 10px 20px rgba(225, 3, 77, 0.2);
+}
+
+.button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 24px rgba(225, 3, 77, 0.25);
+}
+
+.button:active {
+    transform: translateY(0);
+}
+
+.form-container p {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 15px;
+    color: #4b5563;
+}
+
+.form-container a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.form-container a:hover {
+    text-decoration: underline;
+}
