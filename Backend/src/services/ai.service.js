@@ -48,7 +48,6 @@ async function generateInterviewReport({resume, selfDescription, jobDescription}
     JOB DESCRIPTION:${jobDescription}
     `;
 
-    console.log("Gemini response--------")
     try{
     const interaction = await ai.interactions.create({
         model: "gemini-3.6-flash",

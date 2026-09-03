@@ -46,7 +46,7 @@ const technicalQuestionSchema = new mongoose.Schema({
     },
     answer:{
         type: String,
-        required: [true, "Intention is required"]
+        required: [true, "Answer is required"]
     }
 },{
     _id: false
@@ -92,10 +92,10 @@ const preparationPlanSchema = new mongoose.Schema({
         type: String,
         required: [true, "Focus is required"]
     },
-    tasks:{
+    tasks:[{
         type: String,
-        required: [true, "Taks is required"]
-    }
+        required: [true, "Tasks are required"]
+    }]
 },{
     _id: false
 });
@@ -120,7 +120,13 @@ const interviewReportSchema = new mongoose.Schema({
     technicalQuestions: [technicalQuestionSchema],
     behavioralQuestions: [behavioralQuestionSchema],
     skillGaps: [skillGapSchema],
-    preparationPlan: [preparationPlanSchema]
+    preparationPlan: [preparationPlanSchema],
+
+    // ye interview report kis user ke liye generate karwa rahe hai
+    user:{                                 
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "users"
+    }
 },{
     timestamps: true
 });
