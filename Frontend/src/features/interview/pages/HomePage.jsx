@@ -1,8 +1,28 @@
-import '../styles/HomePage.css';
+import { useRef, useState } from 'react';
+import { useInterview } from '../hooks/useInterview';
 import { BriefcaseBusiness, CloudUpload, UserRound, CircleAlert   } from "lucide-react";
-
+import '../styles/HomePage.css';
+import { useNavigate } from 'react-router';
 
 export const Home = () => {
+
+    const navigate = useNavigate();
+
+    const {loading, generateReport} = useInterview();
+
+    const [jobDescription, setJobDescription] = useState("");
+    const [selfDescription, setSelfDescription] = useState("");
+    const resumeInputRef = useRef();
+
+    const handleGenerateReport = async () => {
+        const resumeFile = resumeInputRef.current.files[0];
+        await generateReport({resumeFile, selfDescription, jobDescription});
+        navigate("/interview/${data._id")
+    };
+
+    if(loading){
+        return(<main className="auth-page"><h1>Loading your interview plan...</h1></main>)
+    }
 
     return(
         <div className="home-page">
@@ -28,6 +48,7 @@ export const Home = () => {
                         </div>
 
                         <textarea
+                            onChange={(e)=> {setJobDescription(e.target.value)}}
                             className="panel-textarea"
                             id="job-description"
                             name="jobDescription"
@@ -60,7 +81,11 @@ export const Home = () => {
                                 </span>
                                 <p className="">Click to upload or drag &amp; drop</p>
                                 <p className="">PDF or DOCX (Max 5MB)</p>
-                                <input hidden type="file" id="resume" name="resume" accept=".pdf,.docx" />
+                                <input 
+                                    ref={resumeInputRef}
+                                    hidden type="file" 
+                                    id="resume" name="resume" 
+                                    accept=".pdf,.docx" />
                             </label>
                         </div>
 
@@ -68,7 +93,7 @@ export const Home = () => {
                         <div className="self-description">
                             <label className="section-label" htmlFor="selfDescription">Quick Self-Description</label>
                             <textarea
-                               
+                                onChange={(e)=>{setSelfDescription(e.target.value)}}
                                 id='selfDescription'
                                 name='selfDescription'
                                 className='panel-textarea panel__textarea--short'
@@ -90,9 +115,10 @@ export const Home = () => {
                 <div className='interview-card-footer'>
                     <span className='footer-info'>AI-Powered Strategy Generation &bull; Approx 30s</span>
                     <button
+                        onClick={handleGenerateReport}
                         className='generate-btn'
                     >
-                        Generate My Interview Strategy
+                        Generate Interview Strategy
                     </button>
                 </div>
             </div>
