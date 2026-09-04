@@ -1,0 +1,366 @@
+.home-page{
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    background-color: #0d1117;
+    color: #e6edf3;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    gap: 1rem;
+}
+
+.page-header{
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+}
+
+.page-header h1{
+    margin-bottom: 8px;
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #e6edf3;
+}
+
+.page-header p{
+    color: #7d8590;
+    font-size: 15px;
+    max-width: 550px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.highlight {
+    margin-left: 0.5rem;
+    color: #ff2d78;
+}
+
+.interview-card{
+    width: 100%;
+    max-width: 900px;
+    background-color: #161b22;;
+    border: 1px solid #2a3348;;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.interview-card-body {
+    display: flex;
+    height: 430;
+}
+
+.left-panel {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    background-color: #161b22;
+    border-right: 1px solid #2a3348;
+}
+
+.panel-icon {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.right-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    padding: 1.25rem;
+    background-color: #161b22;
+}
+
+
+.panel-header,
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.panel-header h2,
+.profile-header h2{
+    flex: 1;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 650;
+    color: #e6edf3;;
+}
+
+.panel-textarea{
+    width: 100%;
+    /* height: 280px; */
+    min-height: 0;
+    box-sizing: border-box;
+    background-color: #1e2535;
+    border: 1px solid #2a3348;
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: #e6edf3;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    resize: none;
+    flex: 1;
+    
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* .panel-textarea::placeholder{
+    border-color: #ff2d78;
+    box-shadow: 0 0 0 3px rgba(255, 45, 120, 0.1);
+} */
+
+.panel-textarea:focus {
+    outline: none;
+    border-color: #ff2d78;
+    box-shadow: 0 0 0 3px rgba(255, 45, 120, 0.1);
+}
+
+.panel-textarea{
+    flex: 1;
+    min-height: 350px;
+}
+
+.panel__textarea--short {
+    height: 120px;
+    width: 100%;
+    min-height: 130px;
+    box-sizing: border-box;
+    background-color: #1e2535;
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: #e6edf3;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.5;
+    resize: none;
+}
+
+.char-counter {
+    position: absolute;
+    bottom: 2.25rem;
+    right: 2rem;
+    font-size: 0.75rem;
+    color: #7d8590;
+}
+
+.section-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.35rem;
+    color: #e6edf3;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.badge {
+    padding: 0.15rem 0.5rem;
+    border-radius: 0.3rem;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.badge-best {
+    background-color: rgba(255, 45, 120, 0.12);
+    border: 1px solid rgba(255, 45, 120, 0.25);
+    color: #ff2d78;
+}
+
+.upload-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.dropzone {
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    min-height: 135px;
+    padding: 1.2rem 1rem;
+    box-sizing: border-box;
+    background-color: #1e2535;
+    border: 2px dashed #2a3348;
+    border-radius: 0.6rem;
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.dropzone:hover {
+    border-color: #ff2d78;
+    background-color: rgba(255, 45, 120, 0.05);
+}
+
+.dropzone p {
+    margin: 0;
+}
+
+.dropzone p:first-of-type {
+    color: #e6edf3;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.dropzone p:last-of-type {
+    color: #7d8590;
+    font-size: 0.75rem;
+}
+
+.dropzone input {
+    display: none;
+}
+
+.self-description {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.info-box {
+    display: flex;
+    /* align-items: flex-start; */
+    align-items: center;
+
+    gap: 0.6rem;
+    padding: 0.75rem 1rem;
+    background-color: #1b2a4a;
+    border: 1px solid #2d4a7a;
+    border-radius: 0.5rem;
+}
+
+.info-box p {
+    margin: 0;
+    color: #8ab4f8;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+.info-box p strong {
+    color: #e6edf3;
+}
+
+.interview-card-footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background-color: #161b22;
+    border-top: 1px solid #2a3348;
+}
+
+.footer-info {
+    color: #7d8590;
+    font-size: 0.8rem;
+}
+
+.generate-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #d41756;
+    color: #fff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 10px 20px rgba(225, 3, 77, 0.2);
+}
+
+.generate-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 24px rgba(225, 3, 77, 0.25);
+}
+
+.generate-btn:active {
+    transform: translateY(0);
+}
+
+.interview-card-footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    border-top: 1px solid #2a3348;
+}
+
+.page-footer {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.page-footer a {
+    color: #7d8590;
+    font-size: 0.8rem;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.page-footer a:hover {
+    color: #e6edf3;
+}
+
+
+@media (max-width: 768px) {
+
+    .home-page {
+        padding: 2rem 1rem;
+    }
+
+    .page-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .interview-card-body {
+        flex-direction: column;
+    }
+
+    .left-panel {
+        border-right: none;
+        border-bottom: 1px solid #2a3348;
+    }
+
+    .panel-textarea {
+        min-height: 280px;
+    }
+
+    .interview-card__footer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .generate-btn {
+        width: 100%;
+    }
+
+    .page-footer {
+        flex-wrap: wrap;
+    }
+}

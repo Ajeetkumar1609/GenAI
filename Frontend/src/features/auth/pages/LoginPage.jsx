@@ -21,11 +21,11 @@ const Login = () => {
     };
 
     if(loading) {
-        return (<main>Loading....</main>);
+        return (<main className="auth-page">Loading....</main>);
     }
     
     return(
-        <main>
+        <main className="auth-page">
             <div className="form-container">
                 <h1>Login</h1>
 
@@ -46,7 +46,7 @@ const Login = () => {
                         />
                     </div>
 
-                    <button type="submit" className="button">
+                    <button type="submit" className="button primary-button">
                         Login
                     </button>
                 </form>

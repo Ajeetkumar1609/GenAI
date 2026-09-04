@@ -22,15 +22,15 @@ const Register = () => {
     }
 
     if(loading) {
-        return(<main>Loading...</main>)
+        return(<main className="auth-page">Loading...</main>)
     }
 
     return (
-        <main>
+        <main className="auth-page">
             <div className="form-container">
                 <h1>Register</h1>
 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="register-form">
                     <div className="input-group">
                         <label htmlFor ="username">Username</label>
                         <input
@@ -55,7 +55,7 @@ const Register = () => {
                         />    
                     </div>
 
-                    <button type="submit" className="button">
+                    <button type="submit" className="button primary-button">
                         Register
                     </button>
                 </form>
