@@ -122,6 +122,11 @@ const interviewReportSchema = new mongoose.Schema({
     skillGaps: [skillGapSchema],
     preparationPlan: [preparationPlanSchema],
 
+    title: {
+        type: String,
+        required: [true, "Job title is required"]
+    },
+
     // ye interview report kis user ke liye generate karwa rahe hai
     user:{                                 
         type: mongoose.Schema.Types.ObjectId,
