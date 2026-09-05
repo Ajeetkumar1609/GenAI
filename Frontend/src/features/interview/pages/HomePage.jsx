@@ -16,14 +16,14 @@ export const Home = () => {
 
     const handleGenerateReport = async () => {
         const resumeFile = resumeInputRef.current.files[0];
-        await generateReport({resumeFile, selfDescription, jobDescription});
-        navigate("/interview/${data._id")
+        const data = await generateReport({resumeFile, selfDescription, jobDescription});
+        navigate(`/report/${data._id}`)
     };
 
     if(loading){
         return(<main className="auth-page"><h1>Loading your interview plan...</h1></main>)
     }
-
+   
     return(
         <div className="home-page">
             
@@ -82,6 +82,7 @@ export const Home = () => {
                                 <p className="">Click to upload or drag &amp; drop</p>
                                 <p className="">PDF or DOCX (Max 5MB)</p>
                                 <input 
+                                    
                                     ref={resumeInputRef}
                                     hidden type="file" 
                                     id="resume" name="resume" 

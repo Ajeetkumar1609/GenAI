@@ -61,7 +61,7 @@
     border: 1px solid transparent;
     border-radius: 0.5rem;
     font-family: inherit;
-    font-size: 0.85rem;
+    font-size: 0.92rem;
     text-align: left;
     cursor: pointer;
 
@@ -76,7 +76,7 @@
     background-color: #1e2535;
 }
 
-.interview-nav-button:active {
+.interview-nav-button.active {
     color: #ff2d78;
     background-color: rgba(255, 45, 120, 0.08);
     border-color: rgba(255, 45, 120, 0.2);
@@ -107,7 +107,6 @@
 .content-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: 1rem;
     margin-bottom: 1.25rem;
 }
@@ -119,13 +118,13 @@
     font-weight: 650;
 }
 
-.content-header__count {
+.content-header-count {
     padding: 0.25rem 0.6rem;
     color: #7d8590;
     background-color: #1e2535;
     border: 1px solid #2a3348;
     border-radius: 0.4rem;
-    font-size: 0.7rem;
+    font-size: 0.80rem;
 }
 
 .q-list {
@@ -188,8 +187,8 @@
 
 .q-card-section p {
     margin: 0.5rem 0 0;
-    color: #7d8590;
-    font-size: 0.8rem;
+    color: #919aa7;
+    font-size: 0.91rem;
     line-height: 1.6;
 }
 
@@ -203,12 +202,14 @@
 }
 
 .intention {
+    font-size: 0.75rem;
     color: #ff2d78;
     background-color: rgba(255, 45, 120, 0.1);
     border: 1px solid rgba(255, 45, 120, 0.2);
 }
 
 .answer {
+    font-size: 0.75rem;
     color: #3fb950;
     background-color: rgba(63, 185, 80, 0.1);
     border: 1px solid rgba(63, 185, 80, 0.25);
@@ -245,9 +246,21 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    border: 6px solid #ff2d78;
+    border: 6px solid #2a3348;
     border-radius: 50%;
     box-sizing: border-box;
+}
+
+.score-high {
+    border-color: #ff2d78;
+}
+
+.score-mid {
+    border-color: #fdaf31;
+}
+
+.score-low {
+    border-color: #3fb950;
 }
 
 .match-score-value {
@@ -259,13 +272,13 @@
 .match-score-percentage {
     margin-top: 0.45rem;
     color: #7d8590;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
 }
 
 .match-score-sub {
     margin: 0.75rem 0 0;
     color: #7d8590;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
 }
 
 /* RoadMap */
@@ -296,14 +309,14 @@
     background-color: rgba(255, 45, 120, 0.1);
     border: 1px solid rgba(255, 45, 120, 0.2);
     border-radius: 0.3rem;
-    font-size: 0.65rem;
+    font-size: 0.75rem;
     font-weight: 600;
 }
 
 .roadmap-day-focus {
     margin: 0;
     color: #e6edf3;
-    font-size: 0.85rem;
+    font-size: 1.10rem;
 }
 
 .roadmap-day-tasks {
@@ -318,7 +331,7 @@
     gap: 0.5rem;
     margin-bottom: 0.4rem;
     color: #7d8590;
-    font-size: 0.75rem;
+    font-size: 0.91rem;
     line-height: 1.5;
 }
 
@@ -359,7 +372,25 @@
     background-color: #1e2535;
     border: 1px solid #2a3348;
     border-radius: 0.35rem;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
+}
+
+.skill-tag-high{
+    background-color: #d41756;
+    border-color: #ee276c;
+    color: #161b22;
+}
+
+.skill-tag-medium{
+    background-color: #fdaf31;
+    border-color: #b97c19;
+    color: #161b22;
+}
+
+.skill-tag-low{
+    background-color: #3fb950;
+    border-color: #2d8c3d;
+    color: #161b22;
 }
 
 @media (max-width: 900px) {
@@ -402,7 +433,7 @@
         width: auto;
     }
 
-    .primary-button {
+    .button {
         margin-top: 0.75rem;
     }
 

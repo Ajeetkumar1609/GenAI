@@ -11,16 +11,17 @@ import './App.css'
 function App() {
 
   return (
-    <AuthProvider>
-      <InterviewProvider>
+    <InterviewProvider>
+      <AuthProvider>
         <Routes> 
           <Route path="/register" element={ <Register />} />
           <Route path="/login" element={ <Login />} />
           <Route path="/" element={ <Protected><Home /></Protected> } />
-          <Route path="/interview" element={ <Protected><Interview /></Protected>} />
+          <Route path="/report/:interviewId" element={ <Protected><Interview /></Protected>} />
         </Routes>
-      </InterviewProvider>
-    </AuthProvider>
+      </AuthProvider>
+    </InterviewProvider>
+    
   );
 }
 

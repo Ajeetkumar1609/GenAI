@@ -2,7 +2,7 @@ import {useState, createContext} from 'react';
 
 export const InterviewContext = createContext();
 
-export const InterviewPovider = ({children}) => {
+export const InterviewProvider = ({children}) => {
 
     const [loading, setLoading] = useState(false);
     const [report, setReport] = useState(null);

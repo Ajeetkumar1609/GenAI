@@ -1,7 +1,105 @@
+import { useState } from "react";
 import "../styles/InterviewPage.css";
 import { Code2, MessageCircle, Map } from "lucide-react";
+import { useInterview } from "../hooks/useInterview";
+
+
+// Sub Component
+
+const QuestionCard = ({item, index}) => {
+
+    const [open, setOpen] = useState(false);
+
+    return(
+        <div className="q-card">
+            <div className="q-card-header" onClick={() => setOpen(o => !o)}>
+                <span className="q-card-index">
+                    Q{index+1}
+                </span>
+
+                <p className="q-card-questions">
+                    {item.question}
+                </p>
+
+                <span className="q-card-img">
+                    ↓
+                </span>
+            </div>
+
+            {open && (
+                <div className="q-card-body">
+
+                    <div className="q-card-section">
+                        <span className="q-card-tag intention">
+                            Intention
+                        </span>
+
+                        <p>
+                            {item.intention}
+                        </p>
+                    </div>
+
+                    <div className="q-card-section">
+                        <span className="q-card-tag answer">
+                            Model Answer
+                        </span>
+
+                        <p>
+                            {item.answer}
+                        </p>
+                    </div>
+
+                </div>
+            )}
+        </div>
+    );
+};
+
+const RoadMapDay = ({day}) => {
+    return(
+        <div className="roadmap-day">
+
+            <div className="roadmap-day-header">
+                <span className="roadmap-day-badge">
+                    Day {day.day}
+                </span>
+
+                <h3 className="roadmap-day-focus">
+                    {day.focus}
+                </h3>
+            </div>
+
+
+            <ul className="roadmap-day-tasks">
+                {day.tasks.map((task, i) => (
+                    <li key={i}>
+                        <span className="roadmap-day-bullet"></span>
+                        {task}
+                    </li>
+                ))}
+            </ul>
+
+        </div>
+    );
+}
+
+
+// Main Component
 
 export const Interview = () => {
+
+    const [activeSection, setActiveSection] = useState("technical");
+    const {report, loading} = useInterview();
+
+    if(loading || !report) {
+        return (
+            <main className="auth-page">
+                <h1>Loading your interview plan...</h1>
+            </main>
+        )
+    }
+
+    const scoreColor = report.matchScore >= 80 ? "score-high": report.matchScore >= 60 ? "score-mid" : 'score-low'
 
 return (
     <div className="interview-page">
@@ -15,24 +113,30 @@ return (
                         Sections
                     </p>
 
-                    <button className="interview-nav-button">
+                    <button
+                        className={`interview-nav-button ${activeSection === "technical" ? "active" : ""}`} 
+                        onClick={() => setActiveSection("technical")}>
                         <span className='interview-nav-icon'><Code2 size={16} /></span>
                         Technical Questions
                     </button>
 
-                    <button className="interview-nav-button">
+                    <button 
+                        className={`interview-nav-button ${activeSection === "behavioral" ? "active" : ""}`}
+                        onClick={() => setActiveSection("behavioral")}>
                         <span className='interview-nav-icon'><MessageCircle size={16} /></span>
                         Behavioral Questions    
                     </button>
                     
-                    <button className="interview-nav-button">
+                    <button 
+                        className={`interview-nav-button ${activeSection === "roadmap" ? "active" : ""}`}
+                        onClick={() => setActiveSection("roadmap")}>
                         <span className='interview-nav-icon'><Map size={16} /></span>
                         Road Map
                     </button>
 
                 </div>
 
-                <button className="button primary-button">
+                <button className="button">
                     Download Resume
                 </button>
             </nav>
@@ -42,180 +146,69 @@ return (
                 
                 {/* Technical Questions */}
 
-                <section className="interview-section">
+                {activeSection === "technical" && (
+                    <section className="interview-section">
 
-                    <div className="content-header">
-                        <h2>Technical Questions</h2>
-                        <span className="content-header-count">
-                            10 Questions
-                        </span>
-                    </div>
-
-                    <div className="q-lists">
-                        
-                        <div className="q-card">
-                            <div className="q-card-header">
-                                <span className="q-card-index">
-                                    Q1
-                                </span>
-
-                                <p className="q-card-questions">
-                                    Technical question goes here
-                                </p>
-
-                                <span className="q-card-img">
-                                    ↓
-                                </span>
-                            </div>
-
-                            <div className="q-card-body">
-
-                                <div className="q-card-section">
-                                    <span className="q-card-tag intention">
-                                        Intention
-                                    </span>
-
-                                    <p>
-                                        Interviewer intention goes here.
-                                    </p>
-                                </div>
-
-                                <div className="q-card-section">
-                                    <span className="q-card-tag answer">
-                                        Model Answer
-                                    </span>
-
-                                    <p>
-                                        Model answer goes here.
-                                    </p>
-                                </div>
-
-                            </div>
+                        <div className="content-header">
+                            <h2>Technical Questions</h2>
+                            <span className="content-header-count">
+                                {report.technicalQuestions.length} questions
+                            </span>
                         </div>
 
-                    </div>
+                        <div className="q-lists">                         
+                            {report.technicalQuestions.map((q, i) => (
+                                <QuestionCard key={i} item={q} index={i} />
+                            ))}
+                        </div>
 
-                </section>
+                    </section>
+                )}
 
                 {/* Behavioral Questions */}
 
-                <section className="interview-section">
+                {activeSection === "behavioral" && (
+                    <section className="interview-section">
 
-                    <div className="content-header">
-                        <h2>Behavioral Questions</h2>
+                        <div className="content-header">
+                            <h2>Behavioral Questions</h2>
 
-                        <span className="content-header-count">
-                            5 questions
-                        </span>
-                    </div>
-
-                    <div className="q-list">
-
-                        <div className="q-card">
-
-                            <div className="q-card-header">
-
-                                <span className="q-card-index">
-                                    Q1
-                                </span>
-
-                                <p className="q-card-question">
-                                    Tell me about yourself.
-                                </p>
-
-                                <span className="q-card-img">
-                                    ↓
-                                </span>
-
-                            </div>
-
-                            <div className="q-card-body">
-
-                                <div className="q-card-section">
-                                    <span className="q-card-tag intention">
-                                        Intention
-                                    </span>
-
-                                    <p>
-                                        Interviewer intention goes here.
-                                    </p>
-                                </div>
-
-                                <div className="q-card-section">
-                                    <span className="q-card-tag answer">
-                                        Model Answer
-                                    </span>
-
-                                    <p>
-                                        Model answer goes here.
-                                    </p>
-                                </div>
-
-                            </div>
-
+                            <span className="content-header-count">
+                                {report.behavioralQuestions.length} questions
+                            </span>
                         </div>
 
-                    </div>
+                        <div className="q-lists">                         
+                            {report.behavioralQuestions.map((q, i) => (
+                                <QuestionCard key={i} item={q} index={i} />
+                            ))}
+                        </div>
 
-                </section>
+                    </section>
+                )}
 
                 {/* RoadMap */}
 
-                <section className="interview-section">
+                {activeSection === "roadmap" && (
+                    <section className="interview-section">
 
-                    <div className="content-header">
+                        <div className="content-header">
+                            <h2>Preparation Road Map</h2>
 
-                        <h2>Preparation Road Map</h2>
-
-                        <span className="content-header-count">
-                            7-day plan
-                        </span>
-
-                    </div>
-
-
-                    <div className="roadmap-list">
-
-                        {/* Day 1 */}
-                        <div className="roadmap-day">
-
-                            <div className="roadmap-day-header">
-
-                                <span className="roadmap-day-badge">
-                                    Day 1
-                                </span>
-
-                                <h3 className="roadmap-day-focus">
-                                    JavaScript Fundamentals
-                                </h3>
-
-                            </div>
-
-
-                            <ul className="roadmap-day-tasks">
-
-                                <li>
-                                    <span className="roadmap-day-bullet"></span>
-                                    Revise JavaScript basics
-                                </li>
-
-                                <li>
-                                    <span className="roadmap-day-bullet"></span>
-                                    Practice variables and data types
-                                </li>
-
-                                <li>
-                                    <span className="roadmap-day-bullet"></span>
-                                    Practice functions
-                                </li>
-
-                            </ul>
-
+                            <span className="content-header-count">
+                                {report.preparationPlan.length}-day plan
+                            </span>
                         </div>
 
-                    </div>
 
-                </section>
+                        <div className='roadmap-list'>
+                            {report.preparationPlan.map((day) => (
+                                <RoadMapDay key={day.day} day={day} />
+                            ))}
+                        </div>
+
+                    </section>
+                )}
 
             </main>
 
@@ -225,18 +218,14 @@ return (
                 {/* Match Score */}
                 <div className="match-score">
 
-                    <p className="match-score-label">
-                        Match Score
-                    </p>
+                    <p className="match-score-label">Match Score</p>
 
-                    <div className="match-score-ring">
+                    <div className={`match-score-ring ${scoreColor}`}>
                         <span className="match-score-value">
-                            85
+                            {report.matchScore}
                         </span>
 
-                        <span className="match-score-percentage">
-                            %
-                        </span>
+                        <span className="match-score-percentage">%</span>
                     </div>
 
                     <p className="match-score-sub">
@@ -250,30 +239,20 @@ return (
                 {/* Skill Gaps */}
                 <div className="skill-gaps">
 
-                    <p className="skill-gaps-label">
-                        Skill Gaps
-                    </p>
+                    <p className="skill-gaps-label">Skill Gaps</p>
 
                     <div className="skill-gaps-lists">
-                        <span className="skill-tag">
-                            Javascript
-                        </span>
+                        
+                        {report.skillGaps.map((gap, i) => (
+                            <span key={i} className={`skill-tag skill-tag-${gap.severity}`}>
+                                {gap.skill}
+                            </span>
+                        ))}
 
-                        <span className="skill-tag">
-                            React
-                        </span>
-
-                        <span className="skill-tag">
-                            Node.js
-                        </span>
                     </div>
-
                 </div>
-
             </aside>
-
         </div>
-
     </div>
 );
 

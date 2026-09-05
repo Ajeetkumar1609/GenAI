@@ -6,11 +6,16 @@ const pdfParse = require("pdf-parse");                                    //  to
  * @description Controller to generate interview report based on user self description, resume and job description.
  */
 async function generateInterviewReportController(req, res) {
+    if(!req.file) {
+        return res.status(400).json({
+            message: "Resume file is required"
+        });
+    }
     
-    const resumeContent = await new pdfParse.PDFParse(Uint8Array.from(req.file.buffer)).getText();
-
     const {selfDescription, jobDescription} = req.body;
 
+    const resumeContent = await new pdfParse.PDFParse(Uint8Array.from(req.file.buffer)).getText();
+    
     const interviewReportByAi = await generateInterviewReport({
         resume: resumeContent.text,
         selfDescription,

@@ -27,6 +27,7 @@ export async function generateInterviewReport({resumeFile, selfDescription, jobD
 
     } catch(error){
         console.log(error);
+        throw error;
     }
 }
 
@@ -35,12 +36,13 @@ export async function generateInterviewReport({resumeFile, selfDescription, jobD
  */
 export async function getInterviewReportById(interviewId)  {
     try {
-        const response = await api.get(`/api/interview/${interviewId}`);
+        const response = await api.get(`/api/interview/report/${interviewId}`);
 
         return response.data;
 
     } catch (error) {
         console.log(error);
+        throw error;
     }
 }
 
@@ -54,6 +56,7 @@ export async function getAllInterviewReports () {
         return response.data;
 
     } catch (error) {
-        console.log(error)
+        console.log(error);
+        throw error;
     }
 }

@@ -76,7 +76,7 @@ body {
     box-shadow: 0 0 0 3px rgba(255, 45, 120, 0.14);
 }
 
-.auth-page .button {
+.button {
     width: 100%;
     padding: 0.7rem 0.8rem;
     border: none;
@@ -96,12 +96,12 @@ body {
     box-shadow: 0 10px 20px rgba(225, 3, 77, 0.2);
 }
 
-.auth-page .button:hover {
+.button:hover {
     transform: translateY(-1px);
     box-shadow: 0 12px 28px rgba(255, 45, 120, 0.28);
 }
 
-.auth-page .button:active {
+.button:active {
     transform: translateY(0);
 }
 
