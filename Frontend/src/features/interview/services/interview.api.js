@@ -60,3 +60,20 @@ export async function getAllInterviewReports () {
         throw error;
     }
 }
+
+/**
+ * @description Service to generate resume pdf based on user self description, resume content and job description.
+ */
+export async function generateResumePdf (interviewReportId) {
+    try {
+        const response = await api.post(`/api/interview/resume/pdf/${interviewReportId}`, null, {
+            responseType: "blob"
+        });
+
+        return response.data;
+
+    } catch (error) {
+        console.log("Error in generateResumePdf:", error);
+        throw error;
+    }
+}

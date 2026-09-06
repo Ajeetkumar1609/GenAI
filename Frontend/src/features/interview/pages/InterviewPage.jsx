@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useParams } from "react-router";
 import "../styles/InterviewPage.css";
 import { Code2, MessageCircle, Map } from "lucide-react";
 import { useInterview } from "../hooks/useInterview";
@@ -89,7 +90,8 @@ const RoadMapDay = ({day}) => {
 export const Interview = () => {
 
     const [activeSection, setActiveSection] = useState("technical");
-    const {report, loading} = useInterview();
+    const {report, loading, getResumePdf} = useInterview();
+    const {interviewId} = useParams();
 
     if(loading || !report) {
         return (
@@ -136,7 +138,7 @@ return (
 
                 </div>
 
-                <button className="button">
+                <button className="button" onClick={() => {getResumePdf(interviewId)}}>
                     Download Resume
                 </button>
             </nav>
