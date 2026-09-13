@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router';
 import { useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
+import { Sparkles } from 'lucide-react';
 
 const Login = () => {
 
@@ -21,7 +22,21 @@ const Login = () => {
     };
 
     if(loading) {
-        return (<main className="auth-page">Loading....</main>);
+        return (
+            <main className="interview-loading">
+                <div className="loading-glow"></div>
+
+                <div className="loading-content">
+                    <span className="loading-icon">
+                        <Sparkles size={24} />
+                    </span>
+                    <h1>Logging in...</h1>
+                    <p>
+                        Please wait while we log you in.
+                    </p>
+                </div>
+            </main>
+        )
     }
     
     return(

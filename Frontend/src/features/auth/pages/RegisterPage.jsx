@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { useAuth } from '../hooks/useAuth';
+import { Sparkles } from 'lucide-react';
 
 const Register = () => {
 
@@ -22,7 +23,21 @@ const Register = () => {
     }
 
     if(loading) {
-        return(<main className="auth-page">Loading...</main>)
+        return (
+            <main className="interview-loading">
+                <div className="loading-glow"></div>
+
+                <div className="loading-content">
+                    <span className="loading-icon">
+                        <Sparkles size={24} />
+                    </span>
+                    <h1>Registering...</h1>
+                    <p>
+                        Please wait while we set up your account.
+                    </p>
+                </div>
+            </main>
+        )
     }
 
     return (
