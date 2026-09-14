@@ -4,6 +4,7 @@ import { useAuth } from '../../auth/hooks/useAuth';
 import { BriefcaseBusiness, CloudUpload, UserRound, CircleAlert, Sparkles, LayoutDashboard, FileText, ClipboardList, CheckCircle2, ArrowRight, CalendarDays, LogOut  } from "lucide-react";
 import '../styles/HomePage.css';
 import { useNavigate } from 'react-router';
+import Loader from '../../../components/Loader';
 
 export const Home = () => {
 
@@ -24,21 +25,7 @@ export const Home = () => {
     };
 
     if(loading) {
-        return (
-            <main className="interview-loading">
-                <div className="loading-glow"></div>
-
-                <div className="loading-content">
-                    <span className="loading-icon">
-                        <Sparkles size={24} />
-                    </span>
-                    <h1>Building your interview plan...</h1>
-                    <p>
-                        We're preparing your personalized interview strategy.
-                    </p>
-                </div>
-            </main>
-        )
+        return <Loader title="Building your interview plan..." message="We're preparing your personalized interview strategy." />
     }
    
     return(

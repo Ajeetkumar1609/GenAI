@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router';
 import { useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
-import { Sparkles } from 'lucide-react';
+import Loader from '../../../components/Loader';
 
 const Login = () => {
 
@@ -22,21 +22,7 @@ const Login = () => {
     };
 
     if(loading) {
-        return (
-            <main className="interview-loading">
-                <div className="loading-glow"></div>
-
-                <div className="loading-content">
-                    <span className="loading-icon">
-                        <Sparkles size={24} />
-                    </span>
-                    <h1>Logging in...</h1>
-                    <p>
-                        Please wait while we log you in.
-                    </p>
-                </div>
-            </main>
-        )
+        return <Loader title="Logging in..." message="Please wait while we log you in." />
     }
     
     return(
@@ -48,7 +34,7 @@ const Login = () => {
                     <div className="input-group">
                         <label htmlFor="email">Email</label>
                         <input
-                            onChange={(e)=>{ setEmail(e.target.value) }} 
+                            onChange={(e)=>{ setEmail(e.target.alue) }} 
                             type="email" id="email" name="email" placeholder="Enter your email address" 
                         />
                     </div>

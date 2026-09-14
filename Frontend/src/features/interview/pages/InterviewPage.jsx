@@ -4,6 +4,7 @@ import { useAuth } from "../../auth/hooks/useAuth";
 import { Code2, MessageCircle, Map, Sparkles, ChevronDown, ArrowLeft, Download, LogOut, Target, AlertTriangle} from "lucide-react";
 import { useInterview } from "../hooks/useInterview";
 import "../styles/InterviewPage.css";
+import Loader from "../../../components/Loader";
 
 
 // Sub Component
@@ -99,21 +100,7 @@ export const Interview = () => {
     const {interviewId} = useParams();
 
     if(loading || !report) {
-        return (
-            <main className="interview-loading">
-                <div className="loading-glow"></div>
-
-                <div className="loading-content">
-                    <span className="loading-icon">
-                        <Sparkles size={24} />
-                    </span>
-                    <h1>Loading your interview plan...</h1>
-                    <p>
-                        We're preparing your personalized interview strategy.
-                    </p>
-                </div>
-            </main>
-        )
+        return <Loader title="Loading your interview plan..." message="We're preparing your personalized interview strategy." />
     }
 
     const scoreColor = report.matchScore >= 80 ? "score-high": report.matchScore >= 60 ? "score-mid" : 'score-low'
