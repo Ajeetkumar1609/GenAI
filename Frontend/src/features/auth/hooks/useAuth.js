@@ -47,7 +47,13 @@ export const useAuth = () => {
         const getAndSetUser = async () => {
             try{
                 const data = await getMe();
-                setUser(data.user);
+                
+                if (data) {
+                    setUser(data.user);
+                } else {
+                    setUser(null);
+                }
+                
             } catch (error) {
                 console.log(error);
             } finally{
