@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: "http://localhost:3000",    
+    baseURL:  import.meta.env.VITE_API_URL,   
     withCredentials: true               
 })
 
@@ -19,14 +19,11 @@ export async function register({username, email, password}) {
     }
 };
 
-// without api variable this is how our code looks like 
 export async function login({email, password}) {
 
     try {
-        const response = await axios.post("http://localhost:3000/api/auth/login", {
+        const response = await api.post("/api/auth/login", {
             email, password
-        }, {
-            withCredentials: true
         });
 
         return response.data;
