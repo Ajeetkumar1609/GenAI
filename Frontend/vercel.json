@@ -15,6 +15,10 @@
         {
             "source": "/api/interview/:path*",
             "destination": "https://genai-cp3p.onrender.com/api/interview/:path*"
+        },
+        { 
+          "source": "/(.*)", 
+          "destination": "/index.html" 
         }
     ]
 }
