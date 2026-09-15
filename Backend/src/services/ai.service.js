@@ -87,7 +87,8 @@ async function generatePdfFromHtml( html) {
     try {
         const page = await browser.newPage();
 
-        await page.setContent( html, { waitUntil: 'networkidle0' });   // html is the HTML content to be converted to PDF and wait until the network is idle
+        // 'domcontentloaded' is enough for a self contained resume. 'networkidle0' hangs
+        await page.setContent( html, { waitUntil: 'domcontentloaded', timeout: 60000 });
         
         const pdfBuffer = await page.pdf({    // Generate PDF buffer from the page content
             format: 'A4',
@@ -122,6 +123,7 @@ async function generateResumePdf({resume, selfDescription, jobDescription}) {
                         you can highlight the content using some colors or different font styles but the overall design should be simple and professional.
                         The content should be ATS friendly, i.e. it should be easily parsable by ATS systems without losing important information.
                         The resume should not be so lengthy, it should ideally be 1-2 pages long when converted to PDF. Focus on quality rather than quantity and make sure to include all the relevant information that can increase the candidate's chances of getting an interview call for the given job description.
+                        The HTML must be fully self contained: put every style in a single inline <style> tag and do not link or import any external font, stylesheet, script or image. Use only web safe fonts such as Arial, Helvetica, Georgia or Times New Roman.
                     `
 
     try{
@@ -142,7 +144,7 @@ async function generateResumePdf({resume, selfDescription, jobDescription}) {
         return pdfBuffer;
 
     } catch(err){
-        console.log("Gemini Error:", err);
+        console.log("Resume PDF Error:", err);
         throw err;
     }
 }
