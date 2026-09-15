@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+        {
+            "source": "/api/:path*",
+            "destination": "https://genai-cp3p.onrender.com/api/:path*"
+        }
+    ]
+}
