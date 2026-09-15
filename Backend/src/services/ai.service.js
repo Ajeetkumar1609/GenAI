@@ -76,13 +76,30 @@ async function generateInterviewReport({resume, selfDescription, jobDescription}
  * Generate a PDF from HTML using Puppeteer
  */
 async function generatePdfFromHtml( html) {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.setContent( html, { waitUntil: 'networkidle0' });   // html is the HTML content to be converted to PDF and wait until the network is idle
-    const pdfBuffer = await page.pdf({ format: 'A4', margin: {top: "20mm", bottom: "20mm", left: "15mm", right: "15mm"} });            // Generate PDF buffer from the page content
-    await browser.close();
+    const browser = await puppeteer.launch({
+        headless: true,
+        args: [
+            "--no-sandbox",
+            "--disable-setuid-sandbox"
+        ]
+    });
 
-    return pdfBuffer;
+    try {
+        const page = await browser.newPage();
+
+        await page.setContent( html, { waitUntil: 'networkidle0' });   // html is the HTML content to be converted to PDF and wait until the network is idle
+        
+        const pdfBuffer = await page.pdf({    // Generate PDF buffer from the page content
+            format: 'A4',
+            printBackground: true, 
+            margin: {top: "20mm", bottom: "20mm", left: "15mm", right: "15mm"} 
+        });   
+
+        return pdfBuffer;
+
+    } finally {
+        await browser.close();
+    }
 }
 
 /**
@@ -126,6 +143,7 @@ async function generateResumePdf({resume, selfDescription, jobDescription}) {
 
     } catch(err){
         console.log("Gemini Error:", err);
+        throw err;
     }
 }
 
