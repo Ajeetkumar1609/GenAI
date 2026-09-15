@@ -5,12 +5,12 @@
             "destination": "https://genai-cp3p.onrender.com/api/auth/:path*"
         },
         {
-            "source": "/api/interview",
-            "destination": "https://genai-cp3p.onrender.com/api/interview/"
-        },
-        {
             "source": "/api/interview/:path*",
             "destination": "https://genai-cp3p.onrender.com/api/interview/:path*"
+        },
+        {
+            "source": "/api/interview",
+            "destination": "https://genai-cp3p.onrender.com/api/interview"
         }
     ]
 }
